@@ -31,7 +31,7 @@ class GameViewModel : ViewModel() {
         Log.d("GameFragment", "GameViewModel destroyed!")
     }
 
-    fun getNextWord() {
+    private fun getNextWord() {
         currentWord = allWordsList.random()
         val tempWord = currentWord.toCharArray()
         tempWord.shuffle()
@@ -44,7 +44,7 @@ class GameViewModel : ViewModel() {
             getNextWord()
         } else {
             _currentScrambledWord = String(tempWord)
-            _currentWordCount++
+            ++_currentWordCount
             wordsList.add(currentWord)
         }
 
@@ -67,5 +67,12 @@ class GameViewModel : ViewModel() {
 
     private fun increaseScore() {
         _score += SCORE_INCREASE
+    }
+
+    fun reinitializeData() {
+        _score = 0
+        _currentWordCount = 0
+        wordsList.clear()
+        getNextWord()
     }
 }
