@@ -53,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:onClick="@{() -> viewModel.setDate(viewModel.dateOptions[0])}"
                     android:text="@{viewModel.dateOptions[0]}"
+                    android:checked="@{viewModel.dateOptions[0].equals(viewModel.date)}"
                     tools:text="Thursday" />
 
                 <RadioButton
