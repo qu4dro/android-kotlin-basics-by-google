@@ -17,13 +17,13 @@ package com.example.cupcake
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.cupcake.databinding.FragmentSummaryBinding
 
 /**
@@ -44,6 +44,7 @@ class SummaryFragment : Fragment() {
     ): View? {
         val fragmentBinding = FragmentSummaryBinding.inflate(inflater, container, false)
         binding = fragmentBinding
+        setHasOptionsMenu(true)
         return fragmentBinding.root
     }
 
@@ -55,6 +56,17 @@ class SummaryFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             summaryFragment = this@SummaryFragment
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.
+        onNavDestinationSelected(item,requireView().findNavController())
+                || super.onOptionsItemSelected(item)
     }
 
     /**
