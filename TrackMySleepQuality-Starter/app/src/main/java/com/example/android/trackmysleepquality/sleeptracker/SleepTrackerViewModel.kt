@@ -25,6 +25,7 @@ import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
 import com.example.android.trackmysleepquality.formatNights
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runInterruptible
 
 /**
  * ViewModel for SleepTrackerFragment.
@@ -61,11 +62,23 @@ class SleepTrackerViewModel(
         database.insert(night)
     }
 
+    private suspend fun update(night: SleepNight) {
+        database.update(night)
+    }
+
     fun onStartTracking() {
         viewModelScope.launch {
             val newNight = SleepNight()
             insert(newNight)
             tonight.value = getTonightFromDatabase()
+        }
+    }
+
+    fun onStopTracking() {
+        viewModelScope.launch {
+            val oldNight = tonight.value ?: return@launch
+            oldNight.endTimeMilli = System.currentTimeMillis()
+            update(oldNight)
         }
     }
 }
