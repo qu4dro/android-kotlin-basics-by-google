@@ -41,7 +41,7 @@ class SleepTrackerViewModel(
     val showSnackBarEvent: LiveData<Boolean>
         get() = _showSnackbarEvent
 
-    private var nights = database.getAllNights()
+    var nights = database.getAllNights()
     val nightsString = Transformations.map(nights) {
         nights -> formatNights(nights, application.resources)
     }
