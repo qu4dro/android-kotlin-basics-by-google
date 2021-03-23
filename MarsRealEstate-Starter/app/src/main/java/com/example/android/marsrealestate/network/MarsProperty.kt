@@ -28,4 +28,7 @@ data class MarsProperty(
         val type: String,
 
         val price: Double
-)
+) {
+        val isRental
+        get() = type == "rent"
+}
