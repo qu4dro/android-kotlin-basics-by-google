@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/DevBytes-starter.iml" filepath="$PROJECT_DIR$/.idea/modules/DevBytes-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/DevBytes-starter.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/DevBytes-starter.app.iml" />
     </modules>
   </component>
 </project>
